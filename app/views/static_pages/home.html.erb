@@ -1,0 +1,46 @@
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+
+<div id="wrapper">
+  <div class="cart-icon-top">
+  </div>
+
+  <div class="cart-icon-bottom">
+  </div>
+
+  <div id="checkout">
+  	CHECKOUT
+  </div>
+
+  <div id="sidebar">
+    <h3>CART</h3>
+    <div id="cart">
+    <% if @cart_items.present? %>
+      <% @cart_items.each do |cart_item| %>
+        <div class='cart-item'>
+          <div class='img-wrap'>
+            <img src="#" alt='' />
+          </div>
+          <span><%= cart_item.product.name %></span>
+          <strong><%= cart_item.product.price %>$</strong>
+
+          <div class='cart-item-border'></div>
+          <div class='delete-item' data-cart-id=<%= cart_item.id %>></div>
+        </div>
+      <% end %>
+    <% else %>
+      <span class="empty">No items in cart.</span>       
+    <% end %>
+    </div>
+
+
+    <%= render 'category_list', categories: @categories %>
+  </div>
+
+  <div class="product-list">
+    <%= render 'shared/products_page' %>
+  </div>
+</div>
+
+<div class="cart-items-list"></div>
+
+<!-- Modal HTML embedded directly into document -->

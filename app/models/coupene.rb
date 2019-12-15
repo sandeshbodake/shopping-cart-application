@@ -1,0 +1,2 @@
+class Coupene < ApplicationRecord
+end

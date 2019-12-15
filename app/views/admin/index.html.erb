@@ -1,0 +1,23 @@
+<% provide(:title, 'All Products') %>
+<h1>All Products</h1>
+<%= will_paginate %>
+ <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+      </tr>
+
+      <tbody>
+      	<% @products.each do |product| %>
+      	  <tr>
+      	  	<td><%= product.name %></td>
+      	  	<td><%= product.price %></td>
+      	  	<td><%= product.description %></td>
+      	  </tr>
+      	<% end %>
+      </tbody>
+    </thead>
+ </table>
+<%= will_paginate %>

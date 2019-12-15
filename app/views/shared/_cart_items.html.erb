@@ -1,0 +1,57 @@
+<div id="ex1" class="modal">
+  <% if @cart_items.present? %>
+
+    <div class="">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Cost</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr class="cart-item">
+              <td><span><%= cart_item.product.name %></span></td>
+              <td><span class="price" data-value=<%= cart_item.product.price %>><%= cart_item.product.price %></span></td>
+              <td><input type="number" value=1 class="qty"></td>
+              <td><span class="item-total" value=1 data-item-value=<%= cart_item.product.price %>><%= cart_item.product.price %></span></td>
+            </tr>
+          <% end %>
+        </tbody>
+
+      </table>
+
+      <div id="cart">
+        <% if @coupnes.present? %>
+          <label><strong>Apply Coupnes</strong></label>
+          <% @coupnes.each do |coupne| %>
+            <div class='cart-item'>
+              <div class='img-wrap'>
+                <img src="#" alt='' />
+              </div>
+              <span><%= coupne.reference %></span>
+              <input style="width: 20px;" class="apply-coupne" type="checkbox" value=<%= coupne.amount %>>
+              <span><strong><%= coupne.amount %></strong></span>
+              <div class='cart-item-border'></div>
+              <!-- <div class='delete-item'></div> -->
+            </div>
+          <% end %>
+        <% else %>
+          <span class="empty">No Coupnes in cart.</span>       
+        <% end %>
+      </div>
+
+      <div class="" style="float: right;">
+        <label>Total: </label> <strong><span class="total">0.0</span></strong>
+      </div>
+    </div>
+    <% else %>
+      <span class="empty">No items in cart.</span>       
+    <% end %>
+  <a href="#" rel="modal:close">Close</a>
+</div>
+

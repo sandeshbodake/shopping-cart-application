@@ -1,0 +1,8 @@
+<h3>CATEGORIES</h3>
+<div class="checklist categories">
+  <ul>
+    <% categories.each do |category| %>
+  	  <li><a href="" class="product-categories checked" data-category-id="<%= category.id %>"><span></span><%= category.name %></a></li>
+    <% end %>
+  </ul>
+</div>
