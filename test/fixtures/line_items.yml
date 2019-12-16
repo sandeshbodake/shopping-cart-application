@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  itemable: one
+  itemable_type: Itemable
+  amount: 1.5
+  quantity: 1
+
+two:
+  itemable: two
+  itemable_type: Itemable
+  amount: 1.5
+  quantity: 1
