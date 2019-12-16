@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @orders = @user.orders.includes(:line_items, {line_items: [:product]})
   end
 
   def new

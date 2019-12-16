@@ -5,12 +5,12 @@ class OrdersController < ApplicationController
       order = Order.create!(user_id: current_user.id)
 
       order_params.each do |_vale, line_item|
-
         order.line_items.create!(line_item)
-
         current_user.cart_items.find_by(
           product_id: line_item[:product_id]
         ).destroy
+        line_items_amount = order.line_items.map(&:amount).sum
+        order.update!(amount: line_items_amount)
       end
       return success_message if order.present?
     end
