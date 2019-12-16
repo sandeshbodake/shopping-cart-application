@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       get :following, :followers
     end
 
-    collection do 
+    collection do
       post :add_product_to_cart
       get :cart_items
     end
@@ -27,15 +27,21 @@ Rails.application.routes.draw do
     resources :products
   end
 
-  resources :categories do 
+  resources :categories do
     collection do
       get :fetch_products
-    end 
+    end
   end
 
-  resources :cart_items do 
-    member do 
+  resources :cart_items do
+    member do
       post :delete_cart_item
+    end
+  end
+
+  resources :orders do
+    collection do
+      post :place_order
     end
   end
 end

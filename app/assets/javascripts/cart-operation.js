@@ -16,15 +16,16 @@ $(document).ready(function() {
       this.checkoutOrder();
       this.handleCalculations();
       this.applyCoupnes();
+      this.placeYourOrder();
     },
 
-    listProduct: function() {      
+    listProduct: function() {
       $(document).on('click', '.product-categories', function(e){
         e.preventDefault();
         categoryId = $(this).data('category-id');
 
         $.ajax({
-          url: "/categories/fetch_products", 
+          url: "/categories/fetch_products",
           data: { category_id: categoryId },
           success: function(result){
             $(".product-list").html('');
@@ -47,7 +48,7 @@ $(document).ready(function() {
         if(productId){
           $.ajax({
             method: 'post',
-            url: "/users/add_product_to_cart", 
+            url: "/users/add_product_to_cart",
             data: { product_id: productId },
             success: function(result){
               if(result.error){
@@ -76,7 +77,7 @@ $(document).ready(function() {
 
           $.ajax({
             method: 'POST',
-            url: '/cart_items/' + cartId + '/delete_cart_item' , 
+            url: '/cart_items/' + cartId + '/delete_cart_item' ,
             success: function(result){
               item.parents('.cart-item').remove();
             }
@@ -91,11 +92,11 @@ $(document).ready(function() {
 
         $.ajax({
           method: 'GET',
-          url: '/users/cart_items' , 
+          url: '/users/cart_items' ,
           success: function(result){
             $('.cart-items-list').html(result.html);
             $('#ex1').modal();
-            $('.qty').trigger('input');            
+            $('.qty').trigger('input');
           }
         });
       })
@@ -161,30 +162,67 @@ $(document).ready(function() {
       })
     },
 
+    placeYourOrder: function(){
+
+      $(document).on('click', '.place-your-order', function(e){
+        e.preventDefault();
+
+        form = $(this).parents('form');
+
+        if(form){
+          $.ajax({
+            method: 'post',
+            url: "/orders/place_order",
+            data: form.serialize(),
+            success: function(result){
+              if(result.error){
+                swal({
+                  icon: 'danger',
+                  title: "Error",
+                  text: result.error,
+                });
+              }else{
+                $('#ex1').modal();
+
+                swal({
+                  icon: 'success',
+                  title: "Thanks For Order",
+                  text: "Visit Again ;)",
+                });
+
+                setTimeout(function(){ window.location = '/home'; }, 2000);
+
+              }
+            }
+          })
+        }
+
+      })
+    },
 
     applyAddToCartHtml: function(cartItemZ, productId){
       var productCard = cartItemZ.parent();
       var position = productCard.offset();
       var productImage = $(productCard).find('img').get(0).src;
-      var productName = $(productCard).find('.product_name').get(0).innerHTML;        
+      var productName = $(productCard).find('.product_name').get(0).innerHTML;
       var productPrice = $(productCard).find('.product_price').get(0).innerHTML;
 
-      $("body").append('<div class="floating-cart"></div>');    
-      var cart = $('div.floating-cart');    
+      $("body").append('<div class="floating-cart"></div>');
+      var cart = $('div.floating-cart');
       productCard.clone().appendTo(cart);
-      $(cart).css({'top' : position.top + 'px', "left" : position.left + 'px'}).fadeIn("slow").addClass('moveToCart');    
+      $(cart).css({'top' : position.top + 'px', "left" : position.left + 'px'}).fadeIn("slow").addClass('moveToCart');
       setTimeout(function(){$("body").addClass("MakeFloatingCart");}, 800);
       setTimeout(function(){
         $('div.floating-cart').remove();
         $("body").removeClass("MakeFloatingCart");
 
 
-        var cartItem = "<div class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><strong>"+ productPrice +"</strong><div class='cart-item-border'></div><div class='delete-item' data-cart-id="+ productId +"></div></div>";     
+        var cartItem = "<div class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><strong>"+ productPrice +"</strong><div class='cart-item-border'></div><div class='delete-item' data-cart-id="+ productId +"></div></div>";
 
-        $("#cart .empty").hide();     
+        $("#cart .empty").hide();
         $("#cart").append(cartItem);
         $("#checkout").fadeIn(500);
-        
+
         $("#cart .cart-item").last()
           .addClass("flash")
           .find(".delete-item").click(function(){
@@ -199,12 +237,12 @@ $(document).ready(function() {
           setTimeout(function(){
           $("#cart .cart-item").last().removeClass("flash");
         }, 10 );
-        
+
       }, 1000);
 
     }
 
-   
+
   }
 
   handleProcess.init();

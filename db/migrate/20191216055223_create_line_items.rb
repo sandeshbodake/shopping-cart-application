@@ -4,6 +4,7 @@ class CreateLineItems < ActiveRecord::Migration[5.2]
       t.references :itemable, polymorphic: true
       t.float :amount
       t.integer :quantity
+      t.integer :product_id, add_index: true
 
       t.timestamps
     end
