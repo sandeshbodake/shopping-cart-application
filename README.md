@@ -1,5 +1,5 @@
 # shopping-cart-application 
-This is Basic Rails app for shopping cart application built using ```ruby '2.4.4```
+This is Basic Rails app for shopping cart application built using ```ruby '2.4.4'``` and Rails ```5.2.0```
  
 create database
 
