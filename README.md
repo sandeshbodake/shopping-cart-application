@@ -1,7 +1,5 @@
 # shopping-cart-application 
 
-## start application follow below commands
-
 create database
 
 ```
@@ -14,7 +12,7 @@ migrate database
   rake db:migrate
 ```
 
-seed fake databse
+seed fake database
 
 ```
   rake db:seed
