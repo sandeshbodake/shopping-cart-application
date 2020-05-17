@@ -1,6 +1,6 @@
-## shopping-cart-application 
+# shopping-cart-application 
 
-# start application follow below commands
+## start application follow below commands
 
 create database
 
