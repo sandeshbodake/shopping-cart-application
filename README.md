@@ -8,20 +8,20 @@ This is Basic Rails app for shopping cart application built using ```ruby '2.4.4
 
 A] install gems 
 
-```bundle install```
+  ```bundle install```
 
 B] create database 
 
-```rake db:create```
+  ```rake db:create```
 
 C] migrate database 
 
-```rake db:migrate```
+  ```rake db:migrate```
 
 D] seed fake database 
 
-```rake db:seed```
+  ```rake db:seed```
 
 E] start server 
 
-```rails s```
+  ```rails s```
