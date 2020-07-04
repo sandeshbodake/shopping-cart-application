@@ -1,6 +1,6 @@
 # Shopping cart app
 
-### This application is hosted on herorku https://shopping-cart-app-rails.herokuapp.com/
+### This application is hosted on heroku https://shopping-cart-app-rails.herokuapp.com/
 
 This is Basic Rails app for shopping cart application built using ```ruby '2.4.4'``` and Rails ```5.2.0```
 
