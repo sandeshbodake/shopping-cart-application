@@ -1,27 +1,27 @@
-## shopping-cart-application 
+# Shopping cart app
 
-# start application follow below commands
+### This application is hosted on heroku https://shopping-cart-app-rails.herokuapp.com/
 
-create database
+This is Basic Rails app for shopping cart application built using ```ruby '2.4.4'``` and Rails ```5.2.0```
 
-```
-  rake db:create
-```
+## Step for run application
 
-migrate database
+A] install gems 
 
-```
-  rake db:migrate
-```
+  ```bundle install```
 
-seed fake databse
+B] create database 
 
-```
-  rake db:seed
-```
+  ```rake db:create```
 
-start server
+C] migrate database 
 
-```
-  rails s
-```
+  ```rake db:migrate```
+
+D] seed fake database 
+
+  ```rake db:seed```
+
+E] start server 
+
+  ```rails s```
